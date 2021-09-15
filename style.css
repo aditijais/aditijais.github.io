@@ -26,7 +26,9 @@
   } 
 
 }
-
+nav{
+    display: flex;
+}
 
 
 
@@ -74,10 +76,20 @@ h3{font-size:var(--fs-h3)}
 .section__subtitle--intro,.section__subtitle--about{
     background: var(--clr-accent);
     font-family: var(--ff-secondary);
+
 }
-nav{
-    display:none
+.section__subtitle--about{
+    color: var(--clr-accent);
+    font-weight:var(--fw-bold);
+    margin-bottom: 2em;
 }
+.section__subtitle--work{
+    color:var(--clr-accent);
+    font-weight:var(--fw-bold);
+    margin-bottom: 1em;
+}
+
+
 /*Intro section */
 .intro{
     position:relative;
@@ -90,17 +102,94 @@ nav{
     max-width:1000px;
     margin:0 auto;
 }
+.about-me__img{
+    box-shadow:var(--bs) ;
+}
 @media(min-width:600px){
     .about-me{
         display:grid;
-        grid-template-columns: lfr 200px;
+        grid-template-columns: 1fr 200px;
+        grid-template-areas:
+        "title img"
+        "subtitle img"
+        "text img";
+        grid-column-gap:2em;
     }
-    .section__title--about,
+    .section__title--about{
+        grid-area:title;
+    }
     .section__subtitle--about{
-        grid-column:1;
+        grid-column:1/-1;
+        grid-row:2;
+        position:relative;
+        left:-1em;
+        width:calc(100% + 2em);
+        padding-left:1em;
+        padding-right: calc(200px+4em);
+
     }
     .about-me__img{
-        grid-row:1/-1;
-        grid-column: 2/;
+        grid-area: img;
+        position:relative;
+        z-index:2;
     }
+}
+
+/*my work*/
+.my-work{
+    background-color: var(--clr-dark);
+    color:var(--clr-light);
+    text-align:center;
+}
+
+.portfolio{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    
+}
+.portfolio__item{
+    background-color: var(--clr-accent);
+    overflow:hidden
+}
+.portfolio__img{
+    transform: transform 750ms cubic-bezier(.5,0,.5,1),
+    opacity 250ms linear;
+
+}
+.portfolio__item:focus{
+    position:relative;
+    z-index:2;
+}
+
+.portfolio__img:hover,
+.portfolio__item:focus,.portfolio__img{
+    transform: scale(1.2);
+    opacity:.75;
+}
+.footer{
+    background: #111;
+    color:var(--clr-accent);
+    text-align: center;
+    padding: 2.5em 0;
+}
+.footer__link{
+    font-size:var(--fs-h3);
+    font-weight:var(--fw-bold) ;
+}
+.footer__link:hover, 
+.social-list__link:hover{
+    opacity:.7;
+}
+.footer__link:hover{
+    text-decoration: underline;
+}
+.social-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin:2em 0 0;
+    padding:0;
+}
+.social-list__item{
+    margin:0.5em;
 }
